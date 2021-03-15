@@ -7,4 +7,5 @@ A small desktop application to help organize and browse your collection MTG card
 - Integration with [Magic: The Gathering API](https://docs.magicthegathering.io) for searching and adding cards
 - Embedded LiteDB for storing player and card information in the local computer
 - Runs as a command line standalone application in Windows 10 (uses .NET Framework 5)
+- Cross platform support with framework dependent build
 
