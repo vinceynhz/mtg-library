@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MtgData
 {
-    public class Card 
+    public class Card
     {
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -21,9 +22,7 @@ namespace MtgData
         override
         public string ToString()
         {
-            return "name: " + this.Name + "\n" +
-                    "type: " + this.Type + "\n" +
-                    "set: " + this.SetCode + "\n";
+            return $"Card<{this.Name} : {this.Type} - {this.SetCode}>";
         }
     }
 
@@ -36,6 +35,12 @@ namespace MtgData
         public int RedLands { get; set; }
         public int BlueLands { get; set; }
         public int GreenLands { get; set; }
+
+        override
+        public string ToString()
+        {
+            return $"Player({this.Id})<{this.Name} {{W:{this.WhiteLands}}} {{K:{this.BlackLands}}} {{R:{this.RedLands}}} {{B:{this.BlueLands}}} {{G:{this.GreenLands}}}>";
+        }
     }
 
     public class DataAccess
@@ -46,16 +51,27 @@ namespace MtgData
             db = new LiteDB.LiteDatabase("mtg.db");
         }
 
-        public async Task<int> AsyncAddPlayer(Player player)
+        public async Task<Player> AsyncAddPlayer(Player player)
         {
-            await Task.Run(() => this.AddPlayer(player));
-            return 0;
+            int added = await Task.Run(() => this.AddPlayer(player));
+            return player;
         }
 
-        public void AddPlayer(Player player)
+        public async Task<IEnumerable<Player>> AsyncGetPlayers()
         {
-            var players = db.GetCollection<MtgData.Player>("player");
-            players.Insert(player);
+            return await Task.Run(() => this.GetPlayers());
+        }
+
+        public int AddPlayer(Player player)
+        {
+            var players = db.GetCollection<Player>("player");
+            int id = players.Insert(player).AsInt32;
+            return id;
+        }
+
+        public IEnumerable<Player> GetPlayers()
+        {
+            return db.GetCollection<Player>("player").FindAll();
         }
         ~DataAccess()
         {

@@ -12,7 +12,7 @@ namespace MtgCli
         land,
         card
     }
-    enum Action 
+    enum Action
     {
         add,
         delete
@@ -30,9 +30,9 @@ namespace MtgCli
     [Verb("search", HelpText = "Search for cards in the local library or the MTG online API")]
     class SearchOptions
     {
-        [Option(Default=false, HelpText="Search online instead of the local library")]
+        [Option(Default = false, HelpText = "Search online instead of the local library")]
         public bool Online { get; set; }
-        [Option('n', "name", Required=true, HelpText="Name of the card (partial name allowed)")]
+        [Option('n', "name", Required = true, HelpText = "Name of the card (partial name allowed)")]
         public string Name { get; set; }
 
         public static async Task<int> Process(SearchOptions opts)
@@ -46,28 +46,39 @@ namespace MtgCli
     [Verb("add")]
     class AddOptions
     {
-        [Option("player", SetName="player")]
+        [Option("player", SetName = "player")]
         public bool IsPlayer { get; set; }
 
-        [Option("name", SetName="player", Required=true, HelpText="Player's name to add")]
+        [Option("name", SetName = "player", Required = true, HelpText = "Player's name to add")]
         public string PlayerName { get; set; }
 
         public static async Task<int> Process(AddOptions opts, MtgData.DataAccess db)
         {
-            return await db.AsyncAddPlayer(new MtgData.Player {Name = opts.PlayerName});
+            var added = await db.AsyncAddPlayer(new MtgData.Player { Name = opts.PlayerName });
+            if (null != added)
+            {
+                Console.WriteLine("New player added sucessfully");
+                Console.WriteLine(added);
+                return 0;
+            }
+            Console.WriteLine("Error adding player");
+            return -3;
         }
     }
 
     [Verb("get")]
     class GetOptions
     {
-        [Option('k', "key", Required=true, HelpText="Setting key")]
-        public string Key { get; set; }
-        
-        public static async Task<int> Process(GetOptions opts)
+        [Option("player", SetName = "player")]
+        public bool IsPlayer { get; set; }
+
+        public static async Task<int> Process(GetOptions opts, MtgData.DataAccess db)
         {
-            var value = await MtgLibrary.Settings.AsyncGetSetting(opts.Key) ?? "Not Set";
-            Console.WriteLine($"{opts.Key}: {value}");
+            var players = await db.AsyncGetPlayers();
+            foreach (var player in players)
+            {
+                Console.WriteLine(player);
+            }
             return 0;
         }
     }
@@ -93,7 +104,7 @@ namespace MtgCli
             .MapResult(
                 (SearchOptions opts) => SearchOptions.Process(opts),
                 (AddOptions opts) => AddOptions.Process(opts, db),
-                (GetOptions opts) => GetOptions.Process(opts),
+                (GetOptions opts) => GetOptions.Process(opts, db),
                 (ExitOptions opts) => Task.FromResult(-1),
                 errors => Task.FromResult(-2)
             );
