@@ -3,14 +3,23 @@ using System.Threading.Tasks;
 
 namespace MtgLibrary
 {
-    class Settings 
+    class Settings
     {
-        public static Task<string> AsyncGetSetting(string key)
+        public const string API_MTG_URL_PROPERTY = "api.mtg.url";
+        public const string API_MTG_CARD_PATH_PROPERTY = "api.mtg.card.path";
+        public const string DB_LOCATION_PROPERTY = "db.location";
+        public const string DB_NAME_PROPERTY = "db.name";
+        public static Task<string> AsyncGet(string key)
         {
-            return Task.Run<string>(() => ConfigurationManager.AppSettings[key]);
+            return Task.Run<string>(() => Settings.Get(key));
         }
-        
-        public static Task<string> AsyncAddSetting(string key, string value)
+
+        public static Task<string[]> AsyncGetAllKeys()
+        {
+            return Task.Run<string[]>(() => Settings.GetAllKeys());
+        }
+
+        public static Task<string> AsyncAdd(string key, string value)
         {
             return Task.Run<string>(() => Settings.Add(key, value));
         }
@@ -24,5 +33,14 @@ namespace MtgLibrary
             return value;
         }
 
+        public static string Get(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
+
+        public static string[] GetAllKeys()
+        {
+            return ConfigurationManager.AppSettings.AllKeys;
+        }
     }
 }
