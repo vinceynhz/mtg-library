@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -56,6 +57,40 @@ namespace MtgLibrary
                 Console.WriteLine($"Requested URL: {url}");
             }
             return null;
+        }
+
+        public static async Task<Stream> AsyncLoadImage(string url)
+        {
+            try
+            {
+                Stream stream = await client.GetStreamAsync(url);
+                MemoryStream memoryStream = await Task.Run(() => ToMemoryStream(stream));
+                return memoryStream;
+            }
+            catch (HttpRequestException exception)
+            {
+                Console.WriteLine($"Error executing request: {exception.Message}");
+                Console.WriteLine($"Requested URL: {url}");
+            }
+            catch (TaskCanceledException exception)
+            {
+                Console.WriteLine($"Timeout executing request: {exception.Message}");
+                Console.WriteLine($"Requested URL: {url}");
+            }
+            return null;
+        }
+
+        private static MemoryStream ToMemoryStream(Stream stream)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                memoryStream.Write(buffer, 0, bytesRead);
+            }
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            return memoryStream;
         }
     }
 

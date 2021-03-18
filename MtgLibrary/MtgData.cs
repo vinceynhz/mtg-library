@@ -176,32 +176,31 @@ namespace MtgData
         }
 
         // PLAYER Methods
-        public async Task<Player> AsyncAddPlayer(Player player)
+        public Task<Player> AsyncAddPlayer(Player player)
         {
-            int added = await Task.Run(() => this.AddPlayer(player));
-            return player;
+            return Task.Run(() => this.AddPlayer(player));
         }
 
-        public async Task<List<Player>> AsyncGetPlayers()
+        public Task<List<Player>> AsyncGetPlayers()
         {
-            return await Task.Run(() => this.GetPlayers());
+            return Task.Run(() => this.GetPlayers());
         }
 
-        public async Task<Player> AsyncGetPlayerById(int id)
+        public Task<Player> AsyncGetPlayerById(int id)
         {
-            return await Task.Run(() => this.GetPlayerById(id));
+            return Task.Run(() => this.GetPlayerById(id));
         }
 
-        public async Task<bool> AsyncUpdatePlayer(Player player)
+        public Task<bool> AsyncUpdatePlayer(Player player)
         {
-            return await Task.Run(() => this.UpdatePlayer(player));
+            return Task.Run(() => this.UpdatePlayer(player));
         }
 
-        public int AddPlayer(Player player)
+        public Player AddPlayer(Player player)
         {
             var players = db.GetCollection<Player>(PLAYER_COLLECTION);
             int id = players.Insert(player).AsInt32;
-            return id;
+            return player;
         }
 
         public List<Player> GetPlayers()
@@ -220,9 +219,9 @@ namespace MtgData
         }
 
         // CARD Methods
-        public async Task<PlayerCard> AsyncAddPlayerCard(int playerId, Card card)
+        public Task<PlayerCard> AsyncAddPlayerCard(int playerId, Card card)
         {
-            return await Task.Run(() => this.AddPlayerCard(playerId, card));
+            return Task.Run(() => this.AddPlayerCard(playerId, card));
 
         }
 
@@ -231,9 +230,9 @@ namespace MtgData
             return await Task.Run(() => this.GetPlayerCards(playerId));
         }
 
-        public async Task<List<PlayerCard>> AsyncFindPlayerCards(int playerId, string name, string type, string setCode)
+        public Task<List<PlayerCard>> AsyncFindPlayerCards(int playerId, string name, string type, string setCode)
         {
-            return await Task.Run(() => this.FindPlayerCards(playerId, name, type, setCode));
+            return Task.Run(() => this.FindPlayerCards(playerId, name, type, setCode));
         }
 
         public PlayerCard AddPlayerCard(in int playerId, in Card card)

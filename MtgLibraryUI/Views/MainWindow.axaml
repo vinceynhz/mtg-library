@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:vm="clr-namespace:MtgLibraryUI.ViewModels"
+        xmlns:v="clr-namespace:MtgLibraryUI.Views"
+        
+        mc:Ignorable="d"
+        x:Class="MtgLibraryUI.Views.MainWindow"
+        
+        Icon="/Assets/mtg-logo.png"
+        Title="Magic: The Gathering - Library">
+
+    <!-- <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext> -->
+
+    <v:MainView/>
+
+</Window>
