@@ -3,12 +3,104 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="MtgLibraryUI.Views.MainView">
+             x:Class="MtgLibraryUI.Views.MainView"
+             Background="{StaticResource BackgroundGradient}"
+             >
 
-    <StackPanel>
-        <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <!-- <Image Source="/Assets/card-back.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/> -->
-        <Image Name="Card" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200"/>
-    </StackPanel>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button DockPanel.Dock="Left" Name="Settings" ToolTip.Tip="Settings">
+                <Image Classes="Icon Small" Source="/Assets/icon_settings.png"/>
+            </Button>
+            <TextBlock Name="CurrentPlayer">
+                Player: Not Selected
+            </TextBlock>
+        </DockPanel>
+        <TabControl DockPanel.Dock="Top" Classes="SideBar">
+            <TabItem ToolTip.Tip="Home">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <Image Classes="Icon" Source="/Assets/icon_home.png"/>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <Image Source="/Assets/mtg_logo_full.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="600"/>
+            </TabItem>
+            <TabItem ToolTip.Tip="Search">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <Image Classes="Icon" Source="/Assets/icon_search.png"/>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <TabItem.Content>
+                    Search
+                </TabItem.Content>
+            </TabItem>
+            <TabItem ToolTip.Tip="Players">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <Image Classes="Icon" Source="/Assets/icon_person.png"/>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                Person
+            </TabItem>
+            <TabItem ToolTip.Tip="Cards">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <Image Classes="Icon" Source="/Assets/icon_cards.png"/>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <TabItem.Content>
+                    Cards
+                </TabItem.Content>
+            </TabItem>
+            <TabItem ToolTip.Tip="Lands">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <Image Classes="Icon" Source="/Assets/icon_lands.png"/>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <TabItem.Content>
+                    Lands
+                </TabItem.Content>
+            </TabItem>
+            <TabItem ToolTip.Tip="Tokens">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <Image Classes="Icon" Source="/Assets/icon_tokens.png"/>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <TabItem.Content>
+                    Tokens
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 
+    <!-- <DockPanel >
+        <StackPanel Classes="NavBar" DockPanel.Dock="Left" Background="{StaticResource PrimaryBarColor}">
+            <ToggleButton ToolTip.Tip="Search">
+                <Image Source="/Assets/round_search_white_48dp.png"/>
+            </ToggleButton>
+            <ToggleButton ToolTip.Tip="Players">
+                <Image Source="/Assets/round_person_white_48dp.png"/>
+            </ToggleButton>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom">
+            <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ItemsControl Items="{Binding Players}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel> -->
+        <!-- <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
+        <!-- <Image Source="/Assets/card-back.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>  -->
+        <!-- <Image Name="Card" Classes="Fadeable Card" HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
+
+    <!-- </DockPanel> -->
+
+    
+    
 </UserControl>

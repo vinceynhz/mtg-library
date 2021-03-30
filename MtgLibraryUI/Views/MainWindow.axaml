@@ -9,12 +9,81 @@
         mc:Ignorable="d"
         x:Class="MtgLibraryUI.Views.MainWindow"
         
-        Icon="/Assets/mtg-logo.png"
-        Title="Magic: The Gathering - Library">
+        Icon="/Assets/mtg_logo.png"
+        FontFamily="Ubuntu, Segoe UI"
+        Title="Magic: The Gathering - Library"
+        MinHeight="450" MinWidth="650"
+        >
 
-    <!-- <Design.DataContext>
+    <Window.Styles>
+        <Style Selector="TabControl.SideBar">
+            <Setter Property="TabStripPlacement" Value="Left"/>
+        </Style>
+        <Style Selector="TabControl.SideBar TabItem">
+            <Setter Property="Padding" Value="0 0 0 0"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="Opacity" Value="0.3"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.15"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="TabControl.SideBar TabItem[IsSelected=true]">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+        <Style Selector="TabControl.SideBar TabItem:pointerover">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+
+        <Style Selector="Image.Icon">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="24"/>
+        </Style>
+        <Style Selector="Image.Small">
+            <Setter Property="Width" Value="16"/>
+        </Style>
+
+        <Style Selector="Button#Settings">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Opacity" Value="0.3"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.15"/>
+                </Transitions>
+            </Setter>
+        </Style>
+        <Style Selector="Button#Settings:pointerover">
+            <Setter Property="Opacity" Value="1"/>
+        </Style>
+        
+        <Style Selector="TextBlock#CurrentPlayer">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+        
+
+        <!-- Cards -->
+        <Style Selector="Image.Card">
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <Style Selector="Image.Fadeable">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Transitions">
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.5"/>
+                </Transitions>
+            </Setter>
+        </Style>
+    </Window.Styles>
+
+    <Design.DataContext>
         <vm:MainWindowViewModel/>
-    </Design.DataContext> -->
+    </Design.DataContext>
 
     <v:MainView/>
 

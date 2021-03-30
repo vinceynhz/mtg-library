@@ -17,9 +17,10 @@ namespace MtgLibraryUI
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
+                MtgData.DataAccess db = new MtgData.DataAccess();
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel(),
+                    DataContext = new MainWindowViewModel(db),
                 };
             }
 
