@@ -2,19 +2,13 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-using MtgLibraryUI.ViewModels;
-
-namespace MtgLibraryUI.Views
+namespace MtgLibraryUI.Pages
 {
-    public class MainWindow : Window
+    public class SettingsPage : UserControl
     {
-        public MainWindow()
+        public SettingsPage()
         {
             InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
-            this.DataContext = new MainWindowViewModel();
         }
 
         private void InitializeComponent()

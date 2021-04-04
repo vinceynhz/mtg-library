@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             mc:Ignorable="d" 
+             d:DesignWidth="800" d:DesignHeight="450" 
+             x:Class="MtgLibraryUI.Pages.SearchPage"
+>
+    <UserControl.Styles>
+        <Style Selector="StackPanel#SearchBar">
+            <Setter Property="Background" Value="{StaticResource PrimaryBarBrush}"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style Selector="StackPanel#SearchBar TextBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="MinHeight" Value="0"/>
+        </Style>
+        <Style Selector="StackPanel#SearchBar TextBox /template/ Border#PART_BorderElement">
+            <Setter Property="CornerRadius" Value="0"/>
+        </Style>
+        <Style Selector="StackPanel#SearchBar TextBox:pointerover /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{DynamicResource TextControlButtonBackground}"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        </Style>
+        <Style Selector="StackPanel#SearchBar TextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="Background" Value="{DynamicResource TextControlButtonBackground}"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        </Style>
+        <Style Selector="StackPanel#SearchBar Button">
+            <Setter Property="MinHeight" Value="0"/>
+        </Style>
+        <Style Selector="StackPanel#SearchBar > TextBlock">
+            <Setter Property="Margin" Value="10 0 10 0"/>
+            <Setter Property="FontSize" Value="{DynamicResource }"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="StackPanel#SearchBar > TextBlock#ResultCount">
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel>
+        <StackPanel Name="SearchBar" DockPanel.Dock="Top">
+            <TextBox Name="Name" AcceptsReturn="False" Watermark="Name" Text="{Binding SearchName}"/>
+            <TextBox Name="Type" AcceptsReturn="False" Watermark="Type" Text="{Binding SearchType}"/>
+            <TextBox Name="Set" AcceptsReturn="False" Watermark="Set" Text="{Binding SearchSet}"/>
+            <Button Name="Search" Command="{Binding Search}">Search</Button>
+            <TextBlock Text="Results: "/>
+            <TextBlock Name="ResultCount" Text="{Binding ResultCount}"/>
+        </StackPanel>
+
+        <ProgressBar Name="Searching" DockPanel.Dock="Top" IsIndeterminate="{Binding Searching}"/>
+
+        <DockPanel>
+            <ScrollViewer DockPanel.Dock="Left" Width="500" Background="Green">
+                <ItemsControl Items="{Binding SearchResults}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

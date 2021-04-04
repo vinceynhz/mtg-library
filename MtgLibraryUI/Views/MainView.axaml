@@ -2,11 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+             xmlns:pages="clr-namespace:MtgLibraryUI.Pages"
+
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MtgLibraryUI.Views.MainView"
              Background="{StaticResource BackgroundGradient}"
              >
-
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
             <Button DockPanel.Dock="Left" Name="Settings" ToolTip.Tip="Settings">
@@ -23,7 +25,7 @@
                         <Image Classes="Icon" Source="/Assets/icon_home.png"/>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                <Image Source="/Assets/mtg_logo_full.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="600"/>
+                <pages:HomePage/>
             </TabItem>
             <TabItem ToolTip.Tip="Search">
                 <TabItem.HeaderTemplate>
@@ -31,9 +33,7 @@
                         <Image Classes="Icon" Source="/Assets/icon_search.png"/>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                <TabItem.Content>
-                    Search
-                </TabItem.Content>
+                <pages:SearchPage/>
             </TabItem>
             <TabItem ToolTip.Tip="Players">
                 <TabItem.HeaderTemplate>
@@ -41,7 +41,7 @@
                         <Image Classes="Icon" Source="/Assets/icon_person.png"/>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                Person
+                <pages:PlayersPage/>
             </TabItem>
             <TabItem ToolTip.Tip="Cards">
                 <TabItem.HeaderTemplate>
@@ -49,9 +49,7 @@
                         <Image Classes="Icon" Source="/Assets/icon_cards.png"/>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                <TabItem.Content>
-                    Cards
-                </TabItem.Content>
+                <pages:CardsPage/>
             </TabItem>
             <TabItem ToolTip.Tip="Lands">
                 <TabItem.HeaderTemplate>
@@ -59,9 +57,7 @@
                         <Image Classes="Icon" Source="/Assets/icon_lands.png"/>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                <TabItem.Content>
-                    Lands
-                </TabItem.Content>
+                <pages:LandsPage/>
             </TabItem>
             <TabItem ToolTip.Tip="Tokens">
                 <TabItem.HeaderTemplate>
@@ -69,9 +65,7 @@
                         <Image Classes="Icon" Source="/Assets/icon_tokens.png"/>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                <TabItem.Content>
-                    Tokens
-                </TabItem.Content>
+                <pages:TokensPage/>
             </TabItem>
         </TabControl>
     </DockPanel>

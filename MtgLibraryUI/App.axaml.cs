@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using MtgLibraryUI.ViewModels;
 using MtgLibraryUI.Views;
 
 namespace MtgLibraryUI
@@ -17,11 +16,7 @@ namespace MtgLibraryUI
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                MtgData.DataAccess db = new MtgData.DataAccess();
-                desktop.MainWindow = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel(db),
-                };
+                desktop.MainWindow = new MainWindow();
             }
 
             base.OnFrameworkInitializationCompleted();

@@ -9,6 +9,7 @@ namespace MtgLibrary
         public const string API_MTG_CARD_PATH_PROPERTY = "api.mtg.card.path";
         public const string DB_LOCATION_PROPERTY = "db.location";
         public const string DB_NAME_PROPERTY = "db.name";
+        public const string LOGGING_LEVEL = "logging.level";
         public static Task<string> AsyncGet(string key)
         {
             return Task.Run<string>(() => Settings.Get(key));

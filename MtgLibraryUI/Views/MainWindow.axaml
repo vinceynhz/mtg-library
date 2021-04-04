@@ -11,13 +11,16 @@
         
         Icon="/Assets/mtg_logo.png"
         FontFamily="Ubuntu, Segoe UI"
+        FontSize="12"
         Title="Magic: The Gathering - Library"
         MinHeight="450" MinWidth="650"
         >
 
     <Window.Styles>
+        <!-- Side bar -->
         <Style Selector="TabControl.SideBar">
             <Setter Property="TabStripPlacement" Value="Left"/>
+            <Setter Property="Padding" Value="8 0 0 0"/>
         </Style>
         <Style Selector="TabControl.SideBar TabItem">
             <Setter Property="Padding" Value="0 0 0 0"/>
@@ -59,7 +62,6 @@
         </Style>
         
         <Style Selector="TextBlock#CurrentPlayer">
-            <Setter Property="FontSize" Value="11"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Margin" Value="0"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>

@@ -1,7 +1,8 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:MtgLibraryUI"
-             x:Class="MtgLibraryUI.App">
+             x:Class="MtgLibraryUI.App"
+    >
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
@@ -13,13 +14,19 @@
     <Application.Resources>
         <Color x:Key="PrimaryBarColor">#FF2F2F2F</Color>
         <Color x:Key="SecondaryBarColor">#FF383838</Color>
-        <Color x:Key="WindowBackgroundColor">#FF404040</Color>
-        <Color x:Key="ButtonColor">#FF454545</Color>
-        <Color x:Key="ButtonHighlightColor">#FF8F8F8F</Color>
+        <Color x:Key="BaseBackgroundColor">#FF404040</Color>
+        <Color x:Key="ControlColor">#FF454545</Color>
+        <Color x:Key="ControlHighlightColor">#FF8F8F8F</Color>
 
-        <LinearGradientBrush x:Key="BackgroundGradient">
+        <SolidColorBrush x:Key="PrimaryBarBrush" Color="{StaticResource PrimaryBarColor}"/>
+        <SolidColorBrush x:Key="SecondaryBarBrush" Color="{StaticResource SecondaryBarColor}"/>
+        <SolidColorBrush x:Key="BaseBackgroundBrush" Color="{StaticResource BaseBackgroundColor}"/>
+        <SolidColorBrush x:Key="ControlBrush" Color="{StaticResource ControlColor}"/>
+        <SolidColorBrush x:Key="ControlHighlightBrush" Color="{StaticResource ControlHighlightColor}"/>
+
+        <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0%,100%" EndPoint="100%,100%">
             <GradientStops>
-                <GradientStop Color="{StaticResource SecondaryBarColor}" Offset="0"/>
+                <GradientStop Color="{StaticResource PrimaryBarColor}" Offset="0"/>
                 <GradientStop Color="Black" Offset="1"/>
             </GradientStops>
         </LinearGradientBrush>

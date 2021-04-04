@@ -4,17 +4,14 @@ using Avalonia.Markup.Xaml;
 
 using MtgLibraryUI.ViewModels;
 
-namespace MtgLibraryUI.Views
+namespace MtgLibraryUI.Pages
 {
-    public class MainWindow : Window
+    public class SearchPage : UserControl
     {
-        public MainWindow()
+        public SearchPage()
         {
             InitializeComponent();
-#if DEBUG
-            this.AttachDevTools();
-#endif
-            this.DataContext = new MainWindowViewModel();
+            this.DataContext = new SearchPageViewModel();
         }
 
         private void InitializeComponent()
