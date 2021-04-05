@@ -1,17 +1,16 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 using MtgLibraryUI.ViewModels;
 
-namespace MtgLibraryUI.Pages
+namespace MtgLibraryUI.Controls
 {
-    public class SearchPage : UserControl
+    public class SearchResult : UserControl
     {
-        public SearchPage()
+        public SearchResult()
         {
             InitializeComponent();
-            var card = this.Find<Image>("Card");
-            this.DataContext = new SearchPageViewModel(card);
         }
 
         private void InitializeComponent()

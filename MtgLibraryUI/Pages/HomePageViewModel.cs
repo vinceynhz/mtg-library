@@ -1,4 +1,3 @@
-using Nito.Mvvm;
 using ReactiveUI;
 
 using MtgData;

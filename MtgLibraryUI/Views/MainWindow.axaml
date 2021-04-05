@@ -72,6 +72,7 @@
         <!-- Cards -->
         <Style Selector="Image.Card">
             <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="10"/>
         </Style>
         <Style Selector="Image.Fadeable">
             <Setter Property="Opacity" Value="1"/>
@@ -82,10 +83,6 @@
             </Setter>
         </Style>
     </Window.Styles>
-
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
 
     <v:MainView/>
 

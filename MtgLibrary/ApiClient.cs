@@ -48,13 +48,13 @@ namespace MtgLibrary
             }
             catch (HttpRequestException exception)
             {
-                Console.WriteLine($"Error executing request: {exception.Message}");
-                Console.WriteLine($"Requested URL: {url}");
+                LoggingService.Instance.Error($"Error executing request: {exception.Message}");
+                LoggingService.Instance.Error($"Requested URL: {url}");
             }
             catch (TaskCanceledException exception)
             {
-                Console.WriteLine($"Timeout executing request: {exception.Message}");
-                Console.WriteLine($"Requested URL: {url}");
+                LoggingService.Instance.Error($"Timeout executing request: {exception.Message}");
+                LoggingService.Instance.Error($"Requested URL: {url}");
             }
             return null;
         }
@@ -63,19 +63,20 @@ namespace MtgLibrary
         {
             try
             {
+                LoggingService.Instance.Info($"Loading image: {url}");
                 Stream stream = await client.GetStreamAsync(url);
                 MemoryStream memoryStream = await Task.Run(() => ToMemoryStream(stream));
                 return memoryStream;
             }
             catch (HttpRequestException exception)
             {
-                Console.WriteLine($"Error executing request: {exception.Message}");
-                Console.WriteLine($"Requested URL: {url}");
+                LoggingService.Instance.Error($"Error executing request: {exception.Message}");
+                LoggingService.Instance.Error($"Requested URL: {url}");
             }
             catch (TaskCanceledException exception)
             {
-                Console.WriteLine($"Timeout executing request: {exception.Message}");
-                Console.WriteLine($"Requested URL: {url}");
+                LoggingService.Instance.Error($"Timeout executing request: {exception.Message}");
+                LoggingService.Instance.Error($"Requested URL: {url}");
             }
             return null;
         }

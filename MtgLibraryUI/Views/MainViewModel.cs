@@ -1,15 +1,8 @@
-using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-using Avalonia;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
-
 using Nito.Mvvm;
-using ReactiveUI;
 
 using MtgData;
 
@@ -33,14 +26,6 @@ namespace MtgLibraryUI.ViewModels
             InitializationNotifier = NotifyTask.Create(InitializeAsync());
         }
 
-        // private void Logger(LogLevel level, string msg)
-        // {
-        //     var toLog = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")} {level.ToString()} - {msg}";
-        //     Console.WriteLine(toLog);
-        //     this.Log += toLog + "\n";
-        //     this.OnLog();
-        // }
-
         private async Task InitializeAsync()
         {
             await Task.Delay(2000);
@@ -55,12 +40,6 @@ namespace MtgLibraryUI.ViewModels
                 this.Players.Add(p);
             }
             this.Logging.Log(LogLevel.INFO, "Players Added to View");
-            //     Stream stream = await MtgLibrary.CardService.AsyncLoadImage(uri);
-            //     Console.WriteLine(stream);
-            //     this.Card.Opacity = 0;
-            //     this.Card.Source = new Bitmap(stream);
-            //     this.Card.Opacity = 1;
-            //     Console.WriteLine("Card updated async");
         }
     }
 }

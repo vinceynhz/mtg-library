@@ -47,6 +47,36 @@ namespace MtgData
             }
         }
 
+        public void Trace(string msg)
+        {
+            this.Log(LogLevel.TRACE, msg);
+        }
+
+        public void Debug(string msg)
+        {
+            this.Log(LogLevel.DEBUG, msg);
+        }
+
+        public void Info(string msg)
+        {
+            this.Log(LogLevel.INFO, msg);
+        }
+
+        public void Warn(string msg)
+        {
+            this.Log(LogLevel.WARN, msg);
+        }
+
+        public void Error(string msg)
+        {
+            this.Log(LogLevel.ERROR, msg);
+        }
+
+        public void Fatal(string msg)
+        {
+            this.Log(LogLevel.FATAL, msg);
+        }
+
         public void UpdateLoggingLevel(LogLevel level)
         {
             this.level = level;

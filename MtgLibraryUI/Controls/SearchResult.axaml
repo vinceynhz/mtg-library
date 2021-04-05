@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MtgLibraryUI.Controls.SearchResult">
+
+    <UserControl.Styles>
+        <Style Selector="Button.SearchResult">
+            <Setter Property="BorderBrush" Value="{StaticResource ControlHighlightBrush}"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Width" Value="NaN"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <Style Selector="Button.SearchResult /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+    </UserControl.Styles>
+
+    <Button Classes="SearchResult" Command="{Binding $parent[ItemsControl].DataContext.DoSomething}" CommandParameter="{Binding}">
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Right" Text="{Binding SetCode}" VerticalAlignment="Center"/>
+            <StackPanel Spacing="5">
+                <TextBlock Text="{Binding Name}"/>
+                <TextBlock Text="{Binding Type}" FontSize="12"/>
+            </StackPanel>
+        </DockPanel>
+    </Button>
+
+</UserControl>
