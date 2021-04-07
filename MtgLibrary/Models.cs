@@ -14,6 +14,20 @@ namespace MtgData
 
     public class Card
     {
+        public static readonly Card DefaultCard = new Card()
+        {
+            MtgId = string.Empty,
+            Name = string.Empty,
+            Type = string.Empty,
+            ManaCost = string.Empty,
+            ImageUrl = string.Empty,
+            SetCode = string.Empty,
+            Text = string.Empty,
+            Flavor = string.Empty,
+            Power = string.Empty,
+            Toughness = string.Empty
+        };
+
         [JsonPropertyName("id")]
         public string MtgId { get; set; }
         [JsonPropertyName("name")]
@@ -26,6 +40,16 @@ namespace MtgData
         public string ImageUrl { get; set; }
         [JsonPropertyName("set")]
         public string SetCode { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+        [JsonPropertyName("flavor")]
+        public string Flavor { get; set; }
+        [JsonPropertyName("power")]
+        public string Power { get; set; }
+        [JsonPropertyName("toughness")]
+        public string Toughness { get; set; }
+        [JsonPropertyName("loyalty")]
+        public string Loyalty { get; set; }
 
         public int GetCost(CardColor color)
         {
@@ -64,6 +88,24 @@ namespace MtgData
                 return -1;
             }
             return int.Parse(this.ManaCost.Substring(1, 1));
+        }
+
+        public string PowerToughnessLoyalty
+        {
+            get => this.GetPowerToughnessLoyalty();
+        }
+
+        private string GetPowerToughnessLoyalty()
+        {
+            if (!string.IsNullOrEmpty(Power) || !string.IsNullOrEmpty(Toughness))
+            {
+                return $"{Power}/{Toughness}";
+            }
+            else if (!string.IsNullOrEmpty(Loyalty))
+            {
+                return Loyalty;
+            }
+            return string.Empty;
         }
 
         override

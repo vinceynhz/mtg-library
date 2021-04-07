@@ -54,6 +54,13 @@ namespace MtgLibraryUI.ViewModels
             set => this.RaiseAndSetIfChanged(ref resultCount, value);
         }
 
+        MtgData.Card selectedCard = MtgData.Card.DefaultCard;
+        public MtgData.Card SelectedCard
+        {
+            get => selectedCard;
+            set => this.RaiseAndSetIfChanged(ref selectedCard, value);
+        }
+
         private Image Card;
         private Bitmap DefaultBitmap;
         private LoggingService Logging;
@@ -96,6 +103,7 @@ namespace MtgLibraryUI.ViewModels
             {
                 this.Logging.Warn($"No image URL available for {card.Name} - {card.SetCode}");
             }
+            this.SelectedCard = card;
         }
 
         public async Task SearchAsync()

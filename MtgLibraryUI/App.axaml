@@ -17,12 +17,14 @@
         <Color x:Key="BaseBackgroundColor">#FF404040</Color>
         <Color x:Key="ControlColor">#FF454545</Color>
         <Color x:Key="ControlHighlightColor">#FF8F8F8F</Color>
+        <Color x:Key="PanelHighlightColor">#FF262626</Color>
 
         <SolidColorBrush x:Key="PrimaryBarBrush" Color="{StaticResource PrimaryBarColor}"/>
         <SolidColorBrush x:Key="SecondaryBarBrush" Color="{StaticResource SecondaryBarColor}"/>
         <SolidColorBrush x:Key="BaseBackgroundBrush" Color="{StaticResource BaseBackgroundColor}"/>
         <SolidColorBrush x:Key="ControlBrush" Color="{StaticResource ControlColor}"/>
         <SolidColorBrush x:Key="ControlHighlightBrush" Color="{StaticResource ControlHighlightColor}"/>
+        <SolidColorBrush x:Key="PanelHighlightBrush" Color="{StaticResource PanelHighlightColor}"/>
 
         <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0%,100%" EndPoint="100%,100%">
             <GradientStops>
