@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using MtgLibrary;
 using CommandLine;
 
 namespace MtgCli
